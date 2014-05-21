@@ -20,11 +20,11 @@ function rss (url, max, callback) {
   }).pipe(parser);
 
   req.on('error', function (err) {
-    return callback(err);
+    console.log(err);
   });
 
   parser.on('error', function (err) {
-    return callback(err);
+    console.log(err);
   });
 
   parser.on('readable', function () {
@@ -34,11 +34,10 @@ function rss (url, max, callback) {
 
     while (item = stream.read()) {
       c++;
-      res.articles.push(item);
+      if (c <= max)
+        res.articles.push(item);
     }
 
-    if (c === max)
-      return callback(null, res);
   });
 
   parser.on('end', function () {
