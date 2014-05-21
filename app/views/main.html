@@ -2,35 +2,47 @@
   <ul class="nav nav-pills pull-right">
     <li class="active"><a ng-href="#">Home</a></li>
     <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
+    <li class='dropdown'>
+      <a data-target="#" class='dropdown-toggle' data-toggle='dropdown'>Sites <span class='caret'></span></a>
+      <ul class='dropdown-menu'>
+        <li ng-repeat='site in sites' role='presentation'>
+        <a>{{ site }} <span data-target='#' ng-click='removeSite(site)' class='glyphicon glyphicon-remove'></span></a>
+        </li>
+      </ul>
+    </li>
   </ul>
   <h3 class="text-muted">news</h3>
 </div>
 
 <div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+  <h1>Getting the News!</h1>
+  <li ng-repeat='site in sites'>
+    {{ site }} <a href='' ng-click='removeSite(site)' class='glyphicon glyphicon-remove'></a>
+  </li>
+  <div class='row'>
+    <div class="">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder='new RSS xml file' ng-model='newSite'>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click='addSite()'>Add</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div>
 </div>
 
 <div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+  <div ng-repeat='site in news'>
+    <h3><a ng-href='site.meta.link'>{{ site.meta.title }}</a></h3>
+    <div ng-repeat='article in site.articles'>
+      <h4><a ng-href='article.link'>{{ article.title }}</a></h4>
+      <p>
+        {{ article.summary }}
+      </p>
+    </div>
+  </div>
+ </div>
 
 <div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+  <p>Just testing</p>
 </div>
