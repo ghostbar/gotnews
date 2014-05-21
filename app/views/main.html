@@ -33,9 +33,9 @@
 
 <div class="row marketing">
   <div ng-repeat='site in news'>
-    <h3><a ng-href='site.meta.link'>{{ site.meta.title }}</a></h3>
+    <h3><a ng-href='{{site.meta.link}}'>{{ site.meta.title }}</a></h3>
     <div ng-repeat='article in site.articles'>
-      <h4><a ng-href='article.link'>{{ article.title }}</a></h4>
+      <h4><a ng-href='{{article.link}}'>{{ article.title }}</a></h4>
       <p>
         {{ article.summary }}
       </p>
