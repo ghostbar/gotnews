@@ -1,6 +1,6 @@
 // Generated on 2014-05-21 using generator-angular 0.8.0
 'use strict';
-
+var path = require('path');
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -91,6 +91,23 @@ module.exports = function (grunt) {
       dist: {
         options: {
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+    express: {
+      options: {
+        port: 9000,
+        hostname: 'localhost'
+      },
+      livereload: {
+        options: {
+          server: path.resolve('./server.js'),
+          open: true,
+          livereload: true,
+          bases: [
+            path.resolve('./.tmp'),
+            path.resolve(__dirname, '<%= yeoman.app %>')
+          ]
         }
       }
     },
@@ -385,7 +402,8 @@ module.exports = function (grunt) {
       'bowerInstall',
       'concurrent:server',
       'autoprefixer',
-      'connect:livereload',
+      //'connect:livereload',
+      'express:livereload',
       'watch'
     ]);
   });

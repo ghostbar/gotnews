@@ -12,11 +12,9 @@ app.use(modRw([
   '!png|jpg|jpeg|gif|css|js|html|ttf|pdf|svg|webp$ /index.html [L]'
 ]));
 
-if (app.settings.env === 'development') {
-  app.use('/styles', express['static'](__dirname + '/.tmp/styles'));
-  app.use('/scripts', express['static'](__dirname + '/.tmp/scripts'));
-  app.use(express['static'](__dirname + '/app'));
-}
+app.use('/styles', express['static'](__dirname + '/.tmp/styles'));
+app.use('/scripts', express['static'](__dirname + '/.tmp/scripts'));
+app.use(express['static'](__dirname + '/app'));
 
 if (app.settings.env === 'staging') {
   app.use(express['static'](__dirname + '/dist'));
@@ -29,6 +27,9 @@ app.route('/get.json').get(function (req, res) {
   });
 });
 
+module.exports = app;
+
+/*
 exports.startServer = function(port, path, callback) {
   var p = process.env.PORT || port;
 
@@ -46,3 +47,4 @@ exports.startServer = function(port, path, callback) {
 if (process.env.PORT) {
   this.startServer(process.env.PORT, 'dist');
 }
+*/
