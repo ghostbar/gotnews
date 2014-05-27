@@ -6,6 +6,7 @@
     "connect-modrewrite": "^0.7.5",
     "express": "^4.2.0",
     "feedparser": "^0.16.6",
+    "grunt-express-server": "^0.4.17",
     "request": "^2.36.0"
   },
   "devDependencies": {
